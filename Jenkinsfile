@@ -38,13 +38,8 @@ pipeline {
     stage("Build Docker Image then Push to ECR") {
       steps {
         script {
-          withCredentials([
-            usernamePassword(credentialsId: 'Docker_Credential', usernameVariable: USER, passwordVariable: PASSWORD)
-          ]) {
-            // sh "docker build -t nguyenmanhtrinh/demo-app:java-gradle-${IMAGE_VERSION} ."
-            // sh "docker login -u ${USER} -p ${PASSWORD}"
-
-            sh "echo ${USER} ${PASSWORD}"
+          withCredentials([usernamePassword(credentialsId: 'Docker_Credential', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            sh "echo $PASSWORD"
           }
         }
       }
