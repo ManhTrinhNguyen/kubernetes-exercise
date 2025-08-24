@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app 
+  labels:
+    app: java-app 
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-app 
+  template:
+    metadata:
+      labels:
+        app: java-app
+    spec:
+      imagePullSecrets:
+      - name: docker-authenticate-secret 
+      containers:
+      - name: java-app 
+        image: nguyenmanhtrinh/demo-app:java-gradle
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: java-configmap
+              key: DB_USER
+        - name: DB_PWD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: java-configmap
+              key: DB_NAME
+        - name: DB_SERVER 
+          valueFrom:
+            configMapKeyRef:
+              name: java-configmap
+              key: DB_SERVER
+
+--- 
+
+apiVersion: v1 
+kind: Service
+metadata:
+  name: java-app-service
+spec:
+  selector:
+    app: java-app 
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+
+      

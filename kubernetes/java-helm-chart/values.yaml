@@ -1,0 +1,23 @@
+appName: java-app 
+Replicas: 2
+dockerAuth: docker-authenticate-secret
+appImage: nguyenmanhtrinh/demo-app
+appVersion: java-gradle
+containerPort: 8080
+
+regularEnvData: {}
+secretName: java-secret 
+secretData: 
+  DB_PWD: cGFzc3dvcmQ=
+
+configMapName: java-config 
+configData: 
+  DB_SERVER: mysql-primary-0.mysql-primary-headless
+  DB_USER: tim
+  DB_NAME: my_database
+
+
+serviceType: ClusterIP
+servicePort: 80
+
+ingressName: java-ingress 

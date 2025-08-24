@@ -1,0 +1,19 @@
+architecture: "replication"
+
+auth:
+  username: tim
+  existingSecret: mysql-secret
+
+global:
+  defaultStorageClass: gp3
+
+primary:
+  persistence: 
+    storageClass: gp3
+
+secondary:
+  replicaCount: 2
+  persistence:
+    storageClass: gp3
+
+
