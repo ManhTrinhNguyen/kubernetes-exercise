@@ -2,7 +2,7 @@ appName: java-app
 Replicas: 2
 dockerAuth: docker-authenticate-secret
 appImage: nguyenmanhtrinh/demo-app
-appVersion: java-gradle
+appVersion: $APP_NAME
 containerPort: 8080
 
 regularEnvData: {}
