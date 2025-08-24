@@ -5,6 +5,10 @@ pipeline {
     gradle "gradle-8.14"
   }
 
+  enviroment {
+    IMAGE_VERSION = "1.0.0"
+  }
+
   stages {
     stage("Increment Version") {
       steps {
@@ -34,7 +38,12 @@ pipeline {
     stage("Build Docker Image then Push to ECR") {
       steps {
         script {
-          echo "Docker Image"
+          withCredentials([
+            usernamePassword(credentials: 'Docker_Credential', usernameVariable: USER, passwordVariable: PASSWORD)
+          ]) {
+            sh "docker build -t nguyenmanhtrinh/demo-app:java-gradle-${IMAGE_VERSION} ."
+            sh "docker login -u ${USER} -p ${PASSWORD}"
+          }
         }
       }
     }
