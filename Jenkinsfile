@@ -5,7 +5,7 @@ pipeline {
     gradle "gradle-8.14"
   }
 
-  enviroment {
+  environment {
     IMAGE_VERSION = "1.0.0"
   }
 
