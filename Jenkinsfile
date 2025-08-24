@@ -39,7 +39,7 @@ pipeline {
       steps {
         script {
           withCredentials([
-            usernamePassword(credentials: 'Docker_Credential', usernameVariable: USER, passwordVariable: PASSWORD)
+            usernamePassword(credentialsId: 'Docker_Credential', usernameVariable: USER, passwordVariable: PASSWORD)
           ]) {
             // sh "docker build -t nguyenmanhtrinh/demo-app:java-gradle-${IMAGE_VERSION} ."
             // sh "docker login -u ${USER} -p ${PASSWORD}"
