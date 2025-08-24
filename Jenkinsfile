@@ -35,7 +35,7 @@ pipeline {
       }
     }
 
-    stage("Build Docker Image then Push to ECR") {
+    stage("Build Docker Image then Push to Dockerhub") {
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'Docker_Credential', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
@@ -50,9 +50,13 @@ pipeline {
     }
 
     stage("Deploy with K8s") {
+      environment {
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+      }
       steps {
         script {
-          echo "Deploy"
+          sh "kubectl get all"
         }
       }
     }
