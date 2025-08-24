@@ -26,7 +26,7 @@ pipeline {
     stage("Build Artifact") {
       steps {
         script {
-          echo "Build Artifact"
+          sh "gradle clean build"
         }
       }
     }
