@@ -6,7 +6,7 @@ pipeline {
   }
 
   environment {
-    IMAGE_VERSION = "1.0.0"
+    IMAGE_VERSION = "1.0.1"
   }
 
   stages {
@@ -41,7 +41,9 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'Docker_Credential', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             sh "docker build -t nguyenmanhtrinh/demo-app:java-gradle-${IMAGE_VERSION} ."
 
-            sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+            sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
+
+            sh "docker push nguyenmanhtrinh/demo-app:java-gradle-${IMAGE_VERSION}"
           }
         }
       }
