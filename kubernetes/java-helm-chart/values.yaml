@@ -1,5 +1,5 @@
 appName: java-app 
-Replicas: 50
+Replicas: 1
 dockerAuth: docker-authenticate-secret
 appImage: nguyenmanhtrinh/demo-app
 appVersion: $APP_NAME
