@@ -2,10 +2,10 @@ pipeline {
   agent any 
 
   stages {
-    stage("Increment Version") {
+    stage("Check if python installed") {
       steps {
         script {
-          echo "Increment Version"
+          sh "python3 --version"
         }
       }
     }
