@@ -10,10 +10,10 @@ pipeline {
       }
     }
 
-    stage("Test") {
+    stage("Fetch all 3 images from the ECR repository (using Python)") {
       steps {
         script {
-          echo "Test 111"
+          sh 'python3 /monitoring-python/python-jenkins.py'
         }
       }
       
