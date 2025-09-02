@@ -30,9 +30,13 @@ pipeline {
             returnStdout: true
           ).trim()
           
-          def tags = result.replaceAll("'", '"')
-          echo "${tags}"
-          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: tags)]
+          def replaceSingleQuoteToDoubleQuote = result.replaceAll("'", '"')
+
+          availableVersions = new groovy.json.JsonSlurperClassic().parseText(replaceSingleQuoteToDoubleQuote) as List
+
+          echo "${availableVersions}"
+
+          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: availableVersions)]
         }
       }
     }
