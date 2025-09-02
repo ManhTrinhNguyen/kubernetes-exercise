@@ -53,7 +53,7 @@ pipeline {
     stage("Deploy"){
       steps {
           withCredentials([usernamePassword(credentialsId: 'ecr_password', usernameVariable: 'USER', passwordVariable: 'PWD')]) {
-            sh "$USER"
+            sh "echo $PWD | docker login --username $USER --password-stdin 660753258283.dkr.ecr.us-west-1.amazonaws.com"
           }
       }
     }
