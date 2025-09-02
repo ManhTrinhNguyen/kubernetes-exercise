@@ -52,11 +52,9 @@ pipeline {
 
     stage("Deploy"){
       steps {
-        script {
           withCredentials([usernamePassword(credentials: 'ecr_password', usernameVariable: USER, passwordVariable: PWD)]) {
             sh "${USER}, ${PWD}"
           }
-        }
       }
     }
   }
