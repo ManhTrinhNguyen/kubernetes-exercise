@@ -17,4 +17,5 @@ print(stdout.readlines())
 
 stdin, stdout, stderr = ssh.exec_command("docker run -p 8080:8080 -d run ${docker_image}")
 print(stdout.readlines())
+print(docker_image)
 ssh.close()
