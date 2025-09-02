@@ -16,7 +16,7 @@ pipeline {
           sh '''#!/usr/bin/env bash
           cd monitoring-python
           source app-monitoring/bin/activate
-          python python-jenkins.py
+          python3 python-jenkins.py
           '''
         }
       }
