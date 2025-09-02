@@ -52,9 +52,9 @@ pipeline {
 
     stage("Deploy"){
       steps {
-          withCredentials([usernamePassword(credentialsId: 'ecr_password', usernameVariable: 'USER', passwordVariable: 'PWD')]) {
-            sh "echo $PWD | docker login --username $USER --password-stdin $ECR_REGISTRY"
-          }
+        script {
+          
+        }
       }
     }
   }
