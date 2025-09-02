@@ -16,6 +16,7 @@ pipeline {
           sh '''#!/usr/bin/env bash
           cd monitoring-python
           source app-monitoring/bin/activate
+          pip install boto3
           python3 python-jenkins.py
           '''
         }
