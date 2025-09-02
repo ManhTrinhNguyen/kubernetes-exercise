@@ -30,7 +30,11 @@ pipeline {
             returnStdout: true
           ).trim()
           
-          def jsonish = result.replaceAll("'", '"')
+          versions = result
+            .replace('[','').replace(']','')   // remove brackets
+            .replace("'", '')                  // remove single quotes
+            .split(',')                        // split by comma
+            .collect { it.trim() }  
 
           // availableVersions = new groovy.json.JsonSlurperClassic().parseText(jsonish) as List
 
