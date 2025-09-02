@@ -42,20 +42,20 @@ pipeline {
       }
     }
 
-    stage("Deploy") {
-      input {
-        message "Choose version to deploy"
-        ok "Done"
-        parameters {
-          choice(name: 'ImageVersion', choices: image_versions.join('\n') , description: '')
-        }
-      }
-      steps {
-        script {
-          echo "Choose ${ImageVersion}"
-        }
-      }
-    }
+    // stage("Deploy") {
+    //   input {
+    //     message "Choose version to deploy"
+    //     ok "Done"
+    //     parameters {
+    //       choice(name: 'ImageVersion', choices: image_versions.join('\n'))
+    //     }
+    //   }
+    //   steps {
+    //     script {
+    //       echo "Choose ${ImageVersion}"
+    //     }
+    //   }
+    // }
 
 
     stage("commit to Git") {
