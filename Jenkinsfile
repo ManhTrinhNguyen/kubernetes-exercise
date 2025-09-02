@@ -50,11 +50,14 @@ pipeline {
       }
     }
 
-
-    stage("commit to Git") {
-      steps{
+    stage("Deploy"){
+      steps {
         script {
-          echo env.DOCKER_IMAGE
+           script: '''
+              set -e
+              cd monitoring-python
+              python3 ssh-to-ec2.py
+          '''
         }
       }
     }
