@@ -37,13 +37,12 @@ pipeline {
             .collect { it.trim()}  
             .join('\n')
 
-          echo "${versions}"
-
-          // availableVersions = new groovy.json.JsonSlurperClassic().parseText(jsonish) as List
-
-          // echo "${availableVersions}"
+          if (!versions) {
+            error 'No versions returned by python-jenkins.py'
+          }
 
           version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: versions)]
+
         }
       }
     }
