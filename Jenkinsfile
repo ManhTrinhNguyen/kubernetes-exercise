@@ -36,6 +36,8 @@ pipeline {
             .split(',')                        // split by comma
             .collect { it.trim() }  
 
+          echo "${versions}"
+
           // availableVersions = new groovy.json.JsonSlurperClassic().parseText(jsonish) as List
 
           // echo "${availableVersions}"
