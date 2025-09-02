@@ -11,6 +11,11 @@ pipeline {
     }
 
     stage("Fetch all 3 images from the ECR repository (using Python)") {
+      environment {
+        aws_access_key_id = credentials('aws_access_key_id')
+        aws_secret_access_key = credentials('aws_secret_access_key')
+        region = 'us-west-1'
+      }
       steps {
         script {
           sh '''
