@@ -30,7 +30,8 @@ pipeline {
             returnStdout: true
           ).trim()
 
-          def tags = result.split("\n") as List
+          def tags = result.split('\n') as List
+          
           version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: tags)]
         }
       }
