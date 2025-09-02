@@ -32,6 +32,7 @@ pipeline {
           ).trim()
 
           image_versions = raw
+          echo "${image_versions}"
         }
       }
     }
@@ -47,7 +48,7 @@ pipeline {
       steps {
         script {
           echo "Choose ${ImageVersion}"
-          echo "${image_version}"
+          echo "${image_versions}"
         }
       }
     }
