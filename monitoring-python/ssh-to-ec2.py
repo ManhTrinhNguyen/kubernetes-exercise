@@ -15,6 +15,6 @@ ssh.connect(hostname=host_ip, username="ubuntu", pkey=private_key)
 stdin, stdout, stderr = ssh.exec_command("aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 660753258283.dkr.ecr.us-west-1.amazonaws.com")
 print(stdout.readlines())
 
-stdin, stdout, stderr = ssh.exec_command("docker -p 8080:8080 -d run ${docker_image}")
+stdin, stdout, stderr = ssh.exec_command("docker run -p 8080:8080 -d run ${docker_image}")
 print(stdout.readlines())
 ssh.close()
