@@ -15,7 +15,7 @@ pipeline {
         script {
           sh '''
           cd monitoring-python
-          python --version
+          python3 --version
           '''
         }
       }
