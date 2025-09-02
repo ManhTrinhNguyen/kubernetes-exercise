@@ -1,3 +1,5 @@
+def image_versions = []
+
 pipeline {
   agent any 
 
@@ -29,7 +31,7 @@ pipeline {
             returnStdout: true
           ).trim()
 
-          echo "${raw}"
+          image_versions = raw
         }
       }
     }
@@ -44,7 +46,8 @@ pipeline {
       }
       steps {
         script {
-          echo "Choost ${ImageVersion}"
+          echo "Choose ${ImageVersion}"
+          echo "${image_version}"
         }
       }
     }
