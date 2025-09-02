@@ -30,10 +30,9 @@ pipeline {
             returnStdout: true
           ).trim()
           
-          def tags = result.split('\n') as List
-
+          def tags = result.replaceAll("'", '"')
           echo "${tags}"
-          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: ["1.0", "2.0"])]
+          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: tags)]
         }
       }
     }
