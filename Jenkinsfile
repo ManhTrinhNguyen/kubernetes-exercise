@@ -16,6 +16,7 @@ pipeline {
           sh '''
           cd monitoring-python
           python3 --version
+          source app-monitoring/bin/activate
           '''
         }
       }
