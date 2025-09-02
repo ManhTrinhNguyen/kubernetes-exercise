@@ -1,8 +1,5 @@
 pipeline {
   agent any 
-  environment {
-    IMAGE_VERSION
-  }
   stages {
     stage("Check if python installed") {
       steps {
