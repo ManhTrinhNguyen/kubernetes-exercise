@@ -49,18 +49,6 @@ pipeline {
         }
       }
     }
-
-    stage("Deploy"){
-      steps {
-        script {
-            sh '''
-               set -e
-               cd monitoring-python
-               python3 ssh-to-ec2.py
-            '''
-          }
-        }
-      }
     }
   }
 }
