@@ -15,7 +15,7 @@ pipeline {
         script {
           sh '''
           python3 --version
-          python3 /monitoring-python/app-monitoring/bin/pip install boto3
+          source /monitoring-python/app-monitoring/bin/activate
           '''  
         }
       }
