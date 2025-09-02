@@ -29,7 +29,10 @@ pipeline {
             ''',
             returnStdout: true
           ).trim()
-          echo "${result}"
+          
+          def tags = result.split('\n') as List
+
+          echo "${tags}"
           // version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: result)]
         }
       }
