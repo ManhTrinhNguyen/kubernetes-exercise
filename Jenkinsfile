@@ -13,8 +13,11 @@ pipeline {
     stage("Fetch all 3 images from the ECR repository (using Python)") {
       steps {
         script {
-          sh 'sudo python3 -m venv /monitoring-python/app-monitoring'
-          sh '/monitoring-python/app-monitoring/bin/python /monitoring-python/python-jenkins.py'
+          sh '''#!/usr/bin/env bash
+          cd monitoring-python
+          source app-monitoring/bin/activate
+          python python-jenkins.py
+          '''
         }
       }
       
