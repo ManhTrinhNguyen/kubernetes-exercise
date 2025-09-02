@@ -1,6 +1,6 @@
 import boto3
 
-client = boto3.client('ecr')
+client = boto3.client('ecr', region_name='us-west-1')
 def describe_java_gradle_repo():
   describe_repo = client.describe_images(
     repositoryName='java-gradle'
