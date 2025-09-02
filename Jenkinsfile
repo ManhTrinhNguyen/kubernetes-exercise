@@ -1,6 +1,8 @@
 pipeline {
   agent any 
-
+  environment {
+    IMAGE_VERSION=[]
+  }
   stages {
     stage("Check if python installed") {
       steps {
@@ -19,10 +21,25 @@ pipeline {
         script {
           sh '''
           cd monitoring-python 
-          python3 python-jenkins.py'''
+          python3 python-jenkins.py
+          '''
         }
       }
-      
+    }
+
+    stage("Deploy") {
+      input {
+        message "Choose version to deploy"
+        ok "Done"
+        parameters {
+          choice(name: 'ImageVersion', choices: ['1.0', '2.0', '3.0'], descriptions: '')
+        }
+      }
+      steps {
+        script {
+          echo "Choost ${ImageVersion}"
+        }
+      }
     }
 
 
