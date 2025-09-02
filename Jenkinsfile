@@ -29,8 +29,8 @@ pipeline {
             ''',
             returnStdout: true
           ).trim()
-
-          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: result)]
+          echo "${result}"
+          // version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: result)]
         }
       }
     }
