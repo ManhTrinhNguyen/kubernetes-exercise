@@ -13,11 +13,11 @@ pipeline {
     stage("Fetch all 3 images from the ECR repository (using Python)") {
       steps {
         script {
-          sh '''#!/usr/bin/env bash
+          sh '''
           cd monitoring-python
           source app-monitoring/bin/activate
-          pip install boto3
-          python3 python-jenkins.py
+          app-monitoring/bin/pip install boto3
+          app-monitoring/bin/python3 python-jenkins.py
           '''
         }
       }
