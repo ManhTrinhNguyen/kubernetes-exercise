@@ -34,7 +34,8 @@ pipeline {
             .replace('[','').replace(']','')   // remove brackets
             .replace("'", '')                  // remove single quotes
             .split(',')                        // split by comma
-            .collect { it.trim() }  
+            .collect { it.trim()}  
+            .join('\n')
 
           echo "${versions}"
 
