@@ -30,9 +30,9 @@ pipeline {
             returnStdout: true
           ).trim()
           
-          def replaceSingleQuoteToDoubleQuote = result.replaceAll("'", '"')
+          def jsonish = raw.replaceAll("'", '"')
 
-          availableVersions = new groovy.json.JsonSlurperClassic().parseText(replaceSingleQuoteToDoubleQuote) as List
+          availableVersions = new groovy.json.JsonSlurperClassic().parseText(jsonish) as List
 
           echo "${availableVersions}"
 
