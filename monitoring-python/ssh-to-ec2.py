@@ -16,4 +16,5 @@ stdin, stdout, stderr = ssh.exec_command("aws ecr get-login-password --region us
 print(stdout.readlines())
 
 stdin, stdout, stderr = ssh.exec_command("docker -p 8080:8080 -d run ${docker_image}")
+print(stdout.readlines())
 ssh.close()
