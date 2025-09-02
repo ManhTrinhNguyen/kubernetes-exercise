@@ -37,25 +37,25 @@ pipeline {
             .split(',')                        // split by comma
             .collect { it.trim() }
 
-          echo "${image_versions.join("\n")}"
+          echo "${image_versions}"
         }
       }
     }
 
-    // stage("Deploy") {
-    //   input {
-    //     message "Choose version to deploy"
-    //     ok "Done"
-    //     parameters {
-    //       choice(name: 'ImageVersion', choices: image_versions.join('\n'))
-    //     }
-    //   }
-    //   steps {
-    //     script {
-    //       echo "Choose ${ImageVersion}"
-    //     }
-    //   }
-    // }
+    stage("Deploy") {
+      input {
+        message "Choose version to deploy"
+        ok "Done"
+        parameters {
+          choice(name: 'ImageVersion', choices: image_versions)
+        }
+      }
+      steps {
+        script {
+          echo "Choose ${ImageVersion}"
+        }
+      }
+    }
 
 
     stage("commit to Git") {
