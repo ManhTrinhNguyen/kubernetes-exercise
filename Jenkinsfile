@@ -1,4 +1,3 @@
-def image_versions = []
 
 pipeline {
   agent any 
@@ -22,7 +21,7 @@ pipeline {
       }
       steps {
         script {
-          def raw = sh(
+          def result = sh(
             script: '''
               set -e
               cd monitoring-python
@@ -31,28 +30,8 @@ pipeline {
             returnStdout: true
           ).trim()
 
-          image_versions = raw
-            .replace('[','').replace(']','')   // remove brackets
-            .replace("'", '')                  // remove single quotes
-            .split(',')                        // split by comma
-            .collect { it.trim() }
-
-          echo "${image_versions}"
-        }
-      }
-    }
-
-    stage("Deploy") {
-      input {
-        message "Choose version to deploy"
-        ok "Done"
-        parameters {
-          choice(name: 'ImageVersion', choices: image_versions)
-        }
-      }
-      steps {
-        script {
-          echo "Choose ${ImageVersion}"
+          def tags = result.split("\n") as List
+          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: tags)]
         }
       }
     }
