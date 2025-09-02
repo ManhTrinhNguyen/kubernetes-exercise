@@ -43,7 +43,7 @@ pipeline {
 
           // echo "${availableVersions}"
 
-          // version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: availableVersions)]
+          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: versions)]
         }
       }
     }
