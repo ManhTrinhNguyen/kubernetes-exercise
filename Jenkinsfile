@@ -20,10 +20,15 @@ pipeline {
       }
       steps {
         script {
-          sh '''
+          def image-version = sh(
+            script: '''
           cd monitoring-python 
           python3 python-jenkins.py
-          '''
+          ''',
+            returnStdout: true
+          ).trim()
+
+          echo "${image-version}"
         }
       }
     }
