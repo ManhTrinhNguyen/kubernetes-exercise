@@ -37,7 +37,7 @@ pipeline {
             .split(',')                        // split by comma
             .collect { it.trim() }
 
-          echo "${image_versions}"
+          echo "${image_versions.join("\n")}"
         }
       }
     }
