@@ -29,7 +29,7 @@ pipeline {
         message "Choose version to deploy"
         ok "Done"
         parameters {
-          choice(name: 'ImageVersion', choices: ['1.0', '2.0', '3.0'], descriptions: '')
+          choice(name: 'ImageVersion', choices: ['1.0', '2.0', '3.0'], description: '')
         }
       }
       steps {
