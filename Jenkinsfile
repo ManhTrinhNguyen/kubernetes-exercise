@@ -32,6 +32,10 @@ pipeline {
           ).trim()
 
           image_versions = raw
+            .replace('[','').replace(']','')   // remove brackets
+            .replace("'", '')                  // remove single quotes
+            .split(',')                        // split by comma
+            .collect { it.trim() }
         }
       }
     }
