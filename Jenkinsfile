@@ -33,7 +33,7 @@ pipeline {
           def tags = result.split('\n') as List
 
           echo "${tags}"
-          // version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: result)]
+          version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: ["1.0", "2.0"])]
         }
       }
     }
