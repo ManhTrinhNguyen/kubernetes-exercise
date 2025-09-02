@@ -54,7 +54,7 @@ pipeline {
     stage("commit to Git") {
       steps{
         script {
-          echo "Commit to Git"
+          echo env.DOCKER_IMAGE
         }
       }
     }
