@@ -28,6 +28,8 @@ pipeline {
             ''',
             returnStdout: true
           ).trim()
+
+          echo "${raw}"
         }
       }
     }
