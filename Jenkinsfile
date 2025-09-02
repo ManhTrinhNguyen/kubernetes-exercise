@@ -32,9 +32,9 @@ pipeline {
           
           def jsonish = raw.replaceAll("'", '"')
 
-          availableVersions = new groovy.json.JsonSlurperClassic().parseText(jsonish) as List
+          // availableVersions = new groovy.json.JsonSlurperClassic().parseText(jsonish) as List
 
-          echo "${availableVersions}"
+          // echo "${availableVersions}"
 
           // version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: availableVersions)]
         }
