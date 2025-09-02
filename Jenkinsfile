@@ -32,7 +32,6 @@ pipeline {
           ).trim()
 
           image_versions = raw
-          echo "${image_versions}"
         }
       }
     }
@@ -42,13 +41,12 @@ pipeline {
         message "Choose version to deploy"
         ok "Done"
         parameters {
-          choice(name: 'ImageVersion', choices: ['1.0', '2.0', '3.0'], description: '')
+          choice(name: 'ImageVersion', choices: image_versions , description: '')
         }
       }
       steps {
         script {
           echo "Choose ${ImageVersion}"
-          echo "${image_versions}"
         }
       }
     }
