@@ -36,6 +36,8 @@ pipeline {
             .replace("'", '')                  // remove single quotes
             .split(',')                        // split by comma
             .collect { it.trim() }
+
+          echo "${image_versions}"
         }
       }
     }
@@ -45,7 +47,7 @@ pipeline {
         message "Choose version to deploy"
         ok "Done"
         parameters {
-          choice(name: 'ImageVersion', choices: image_versions , description: '')
+          choice(name: 'ImageVersion', choices: image_versions.join('\n') , description: '')
         }
       }
       steps {
