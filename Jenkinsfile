@@ -3,7 +3,8 @@ pipeline {
   agent any 
 
   environment{
-    IMAGE_VERSION = '1.0'
+    ECR_REGISTRY = "660753258283.dkr.ecr.us-west-1.amazonaws.com"
+    ECR_REPO = "java-gradle"
   }
   stages {
     stage("Check if python installed") {
@@ -42,7 +43,9 @@ pipeline {
           }
 
           version_to_deploy = input message: 'Select version to deploy', ok: 'Deploy', parameters: [choice(name: 'Select version', choices: versions)]
+          env.DOCKER_IMAGE = "${ECR_REGISTRY}/${ECR_REPO}:${version_to_deploy}"
 
+          echo env.DOCKER_IMAGE
         }
       }
     }
