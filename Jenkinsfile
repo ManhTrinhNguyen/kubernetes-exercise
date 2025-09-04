@@ -5,6 +5,7 @@ pipeline {
   environment{
     ECR_REGISTRY = "660753258283.dkr.ecr.us-west-1.amazonaws.com"
     ECR_REPO = "java-gradle"
+    ECR_PASSWORD = credentials("ecr_password")
 
     HOST_IP = "54.177.245.131"
     SSH_PATH_KEY_FILE = "/var/jenkins_home/terraform.pem"
