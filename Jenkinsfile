@@ -7,7 +7,7 @@ pipeline {
     ECR_REPO = "java-gradle"
     ECR_PASSWORD = credentials("ecr_password")
 
-    HOST_IP = "54.177.245.131"
+    HOST_IP = "13.56.223.104"
     SSH_PATH_KEY_FILE = "/var/jenkins_home/terraform.pem"
   }
   stages {
